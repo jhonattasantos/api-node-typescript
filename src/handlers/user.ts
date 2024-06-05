@@ -38,3 +38,38 @@ export function getUserById(request: Request, response: Response) {
     data: user,
   });
 }
+
+export function createUser(request: Request, response: Response) {
+  const { name, email } = request.body;
+  const newUser = {
+    id: users.length + 1,
+    name,
+    email,
+  };
+
+  users.push(newUser);
+
+  response.status(201).json({
+    data: newUser,
+  });
+}
+
+export function updateUser(request: Request, response: Response) {
+  const { id } = request.params;
+  const { name, email } = request.body;
+
+  const user = users.find((user) => user.id === parseInt(id, 10));
+
+  if (!user) {
+    return response.status(404).json({
+      error: "User not found",
+    });
+  }
+
+  user.name = name || user.name;
+  user.email = email || user.email;
+
+  response.json({
+    data: user,
+  });
+}

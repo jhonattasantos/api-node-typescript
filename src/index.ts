@@ -7,6 +7,8 @@ config();
 const app = express();
 const port = process.env.PORT || 3033;
 
+app.use(express.json());
+
 app.use("/api/users", usersRouter);
 
 app.listen(port, () => {
