@@ -10,7 +10,7 @@ import usersRouter from "./routes/users";
 config();
 
 const app = express();
-const port = process.env.PORT || 3033;
+const port = process.env.PORT || 3000;
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
