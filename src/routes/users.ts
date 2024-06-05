@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createUser,
+  deleteUser,
   getUserById,
   getUsers,
   updateUser,
@@ -153,5 +154,33 @@ router.get("/:id", getUserById);
  *         description: Usuário não encontrado
  */
 router.put("/:id", updateUser);
+
+/**
+ * @swagger
+ * /api/users/{id}:
+ *   delete:
+ *     summary: Deleta um usuário pelo ID
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: O ID do usuário
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Usuário deletado com sucesso"
+ *       404:
+ *         description: Usuário não encontrado
+ */
+router.delete("/:id", deleteUser);
 
 export default router;

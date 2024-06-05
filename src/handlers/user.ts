@@ -73,3 +73,20 @@ export function updateUser(request: Request, response: Response) {
     data: user,
   });
 }
+
+export function deleteUser(request: Request, response: Response) {
+  const { id } = request.params;
+  const userIndex = users.findIndex((user) => user.id === parseInt(id, 10));
+
+  if (userIndex === -1) {
+    return response.status(404).json({
+      error: "User not found",
+    });
+  }
+
+  users.splice(userIndex, 1);
+
+  response.json({
+    data: users,
+  });
+}
